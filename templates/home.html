@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="flproject\static\index.css">
+</head>
+<body>
+	<center><h1>Save the document titles</h1></center>
+	<form  method="POST"  action="/" >
+		<input type="text" name="title">
+		<input type="submit" value ="Add">
+	</form>
+
+	<h1>Titles</h1>
+	<table>
+    {% for book in books %}
+    <tr>
+    	<td>
+    		<p style="color: white; border: 2px solid red; background-color: orange; width: 90%; border-radius: 20px; text-align: center;">{{book.title}}</p>
+    	</td>
+
+    	<td>
+    		<form method="POST" action="./update">
+    			<input type="hidden" value="{{book.title}}" name="oldtitle">
+    			<input type="text" value="{{book.title}}" name="newtitle">
+    			<input type="submit" value="Update">
+    		</form>
+    	</td>
+
+    	<td>
+    		<form method="POST" action="./delete">
+    			<input type="hidden" value="{{book.title}}" name="title">
+    			<input type="submit" value="Delete" style="color:white; background-color: red;">
+    		</form>
+    	</td>
+    </tr> 
+    {% endfor %}
+    </table>
+
+</body>
+</html>
